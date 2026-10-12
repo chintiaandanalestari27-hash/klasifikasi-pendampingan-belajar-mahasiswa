@@ -25,8 +25,9 @@ Proyek ini berkaitan dengan Sustainable Development Goals (SDGs) 4: Pendidikan B
 - Menunjukkan contoh penerapan teknologi berbasis data yang relevan dengan SDGs 4.
 ## 5. Dataset
 Nama file dataset: student_performance_clean.csv
-Dataset yang digunakan berisi 12.467 baris dan 16 kolom awal. Pada notebook, dataset dibaca dari file CSV yang diunggah oleh pengguna. Dataset berisi indikator terkait aktivitas belajar dan performa akademik.
-Fitur yang digunakan model
+Dataset yang digunakan berisi 12.467 baris dan 16 kolom awal. 
+Dataset berisi indikator terkait aktivitas belajar dan performa akademik.
+Fitur yang digunakan model:
 Nama kolom	Keterangan
 StudyHours	Jam belajar
 Attendance	Kehadiran
@@ -37,13 +38,13 @@ ExamScore	Nilai ujian
 
 
 Target klasifikasi
-Notebook membuat kolom target Perlu_Pendampingan menggunakan aturan berikut:
+Membuat kolom target Perlu_Pendampingan menggunakan aturan berikut:
 - Ya: jika Attendance < 70, atau AssignmentCompletion < 60, atau ExamScore < 60, atau StudyHours < 10.
 - Tidak: jika tidak ada kondisi tersebut yang terpenuhi.
 Hasil pembentukan target pada dataset:
 - Ya: 7.540 data
 - Tidak: 4.927 data
-Pemeriksaan awal pada notebook menunjukkan tidak ada nilai kosong dan tidak ada baris duplikat pada dataset yang digunakan.
+Pemeriksaan awal menunjukkan tidak ada nilai kosong dan tidak ada baris duplikat pada dataset yang digunakan.
 Catatan metodologis: label target dibentuk langsung dari ambang batas beberapa fitur yang juga digunakan untuk melatih model. Karena itu, skor evaluasi yang sangat tinggi dapat terjadi karena model mempelajari kembali aturan tersebut. Skor ini belum membuktikan bahwa model mampu mengenali kebutuhan pendampingan nyata. Untuk pengembangan lebih lanjut, gunakan label yang divalidasi secara independen dan uji pada data yang sesuai.
 ## 6. Hasil Evaluasi Model
 Dataset dibagi menjadi 80% data training dan 20% data testing dengan random_state=42 serta stratifikasi target.
@@ -57,11 +58,11 @@ Recall	1,00 (100%)	1,00 (100%)
 F1-score	1,00 (100%)	1,00 (100%)
 
 
-Kedua model memprediksi seluruh 2.494 data testing dengan benar berdasarkan label target yang dibuat oleh aturan notebook. Hasil ini sesuai dengan output evaluasi yang tersedia pada notebook.
+Kedua model memprediksi seluruh 2.494 data testing dengan benar berdasarkan label target yang dibuat. Hasil ini sesuai dengan output evaluasi.
 ## 7. Kesimpulan Performa
-Berdasarkan evaluasi pada notebook, Decision Tree dan Random Forest sama-sama memperoleh accuracy, precision, recall, dan F1-score sebesar 100%. Jadi, berdasarkan pengujian tersebut, belum ada perbedaan performa di antara kedua model.
+Decision Tree dan Random Forest sama-sama memperoleh accuracy, precision, recall, dan F1-score sebesar 100%. Jadi, berdasarkan pengujian tersebut, belum ada perbedaan performa di antara kedua model.
 Namun, nilai sempurna perlu ditafsirkan secara hati-hati karena label Perlu_Pendampingan dibentuk menggunakan ambang batas pada Attendance, AssignmentCompletion, ExamScore, dan StudyHours, yang juga menjadi fitur input. Kondisi ini membuat tugas klasifikasi relatif mudah bagi model dan berisiko menghasilkan evaluasi yang terlalu optimistis untuk penggunaan nyata.
-Kesimpulan: kedua algoritma berhasil mempelajari aturan target yang diterapkan dalam notebook. Validasi menggunakan label independen dan data yang lebih representatif masih diperlukan sebelum model digunakan untuk menentukan kebutuhan pendampingan mahasiswa secara nyata.
+Kesimpulan: kedua algoritma berhasil mempelajari aturan target yang diterapkan. Validasi menggunakan label independen dan data yang lebih representatif masih diperlukan sebelum model digunakan untuk menentukan kebutuhan pendampingan mahasiswa secara nyata.
 ## 8. Teknologi yang Digunakan
 - Python — bahasa pemrograman.
 - Google Colab / Jupyter Notebook — lingkungan menjalankan kode.
